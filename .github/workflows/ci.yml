@@ -9,3 +9,18 @@ jobs:
     steps:
       - name: Print Hello
         run: echo "Hello World"
+
+  test:
+    name: Test Python package
+    runs-on: ubutnu-latest
+    steps: 
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: Install package
+        run: pip install .[test]
+      - name: Run Pytest
+        run: pytest -vv
